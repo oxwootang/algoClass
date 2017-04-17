@@ -56,9 +56,14 @@ function Stack(capacity) {
 }
 
 Stack.prototype.push = function(value) {
-  this.storage += "--"+value;
-  return this.storage.length;
-};
+  if(this.count() < this.capacity){
+    this.storage += "--"+value;
+    return this.count();
+  }
+  else {
+    return "Max capacity already reached. Remove element before adding a new one."
+  }
+}
 // Time complexity:
 
 Stack.prototype.pop = function() {
@@ -85,6 +90,23 @@ Stack.prototype.count = function() {
 };
 // Time complexity:
 
+Stack.prototype.contains = function(value) {
+  var found = false;
+  var stack_copy = this.storage;
+  while(!found) {
+    var elem = stack_copy.slice(stack_copy.lastIndexOf("--")+2);
+    if(elem === value){
+      found = true;
+    }
+    else if(stack_copy.length===0){
+      break;
+    }
+    else {
+      stack_copy = stack_copy.substring(0, stack_copy.lastIndexOf("--"));
+    }
+  }
+  return found;
+};
 
 /*
 *** Exercises:
