@@ -51,26 +51,37 @@ What's the time complexity?
  */
 
 function Stack(capacity) {
-  // implement me...
+  this.storage = "";
+  this.capacity = capacity;
 }
 
 Stack.prototype.push = function(value) {
-  // implement me...
+  this.storage += "--"+value;
+  return this.storage.length;
 };
 // Time complexity:
 
 Stack.prototype.pop = function() {
-  // implement me...
+  var toReturn = this.storage.slice(this.storage.lastIndexOf("--")+2);
+  this.storage = this.storage.substring(0, this.storage.lastIndexOf("--"));
+  return toReturn;
 };
 // Time complexity:
 
 Stack.prototype.peek = function() {
-  // implement me...
+  return this.storage.slice(this.storage.lastIndexOf("--")+2);
 };
 // Time complexity:
 
 Stack.prototype.count = function() {
-  // implement me...
+  var num = 0;
+  for(var i=0; i<this.storage.length; i++){
+    if(this.storage[i] === "-"){
+      num += 1;
+      i++;
+    }
+  }
+  return num;
 };
 // Time complexity:
 
