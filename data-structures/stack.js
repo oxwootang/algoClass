@@ -108,6 +108,16 @@ Stack.prototype.contains = function(value) {
   return found;
 };
 
+Stack.prototype.until = function(value){
+  var stack_copy = this.storage;
+  var count = 0;
+  while(stack_copy.length > 0){
+    if(stack_copy.slice(stack_copy.lastIndexOf("--")+2) === value){
+
+    }
+  }
+};
+
 /*
 *** Exercises:
 
