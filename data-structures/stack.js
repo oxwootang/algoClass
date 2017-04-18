@@ -123,6 +123,8 @@ Stack.prototype.until = function(value){
   return count;
 };
 
+
+//test code
 var myStack = new Stack(10);
 myStack.push(2);
 myStack.push(3);
