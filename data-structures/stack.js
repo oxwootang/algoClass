@@ -55,6 +55,12 @@ What's the time complexity?
 //   this.capacity = capacity;
 // }
 
+function Stack(capacity){
+  this._capacity = capacity || Infinity;
+  this._storage = {};
+  this._count = 0;
+};
+
 // Stack.prototype.push = function(value) {
 //   if(this.count() < this.capacity){
 //     this.storage += "--"+value;
@@ -64,19 +70,40 @@ What's the time complexity?
 //     return "Max capacity already reached. Remove element before adding a new one."
 //   }
 // }
-// // Time complexity:
+
+Stack.prototype.push = function(value){
+  if(this._count < this._capacity){
+    this._storage[this._count++] = value;
+    return this._count;
+  }
+  return "Max capacity already reached. Remove element before adding a new one."
+};
+// Time complexity: O(1) - constant
 
 // Stack.prototype.pop = function() {
 //   var toReturn = this.storage.slice(this.storage.lastIndexOf("--")+2);
 //   this.storage = this.storage.substring(0, this.storage.lastIndexOf("--"));
 //   return toReturn;
 // };
-// // Time complexity:
+
+Stack.prototype.pop = function(){
+  var value = this._storage[--this._count];
+  delete this._storage[this._count];
+  if(this._count < 0){
+    this._count = 0;
+  }
+  return value;
+}
+// Time complexity: O(1);
 
 // Stack.prototype.peek = function() {
 //   return this.storage.slice(this.storage.lastIndexOf("--")+2);
 // };
-// // Time complexity:
+
+Stack.prototype.peek = function(){
+  return this._storage[this._count - 1];
+}
+// Time complexity: O(1)
 
 // Stack.prototype.count = function() {
 //   var num = 0;
@@ -88,7 +115,11 @@ What's the time complexity?
 //   }
 //   return num;
 // };
-// // Time complexity:
+
+Stack.prototype.count = function(){
+  return this._count;
+}
+// Time complexity: O(1)
 
 // Stack.prototype.contains = function(value) {
 //   var found = false;
