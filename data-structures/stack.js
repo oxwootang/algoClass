@@ -51,29 +51,88 @@ What's the time complexity?
  */
 
 function Stack(capacity) {
-  // implement me...
+  this.storage = "";
+  this.capacity = capacity;
 }
 
 Stack.prototype.push = function(value) {
-  // implement me...
-};
+  if(this.count() < this.capacity){
+    this.storage += "--"+value;
+    return this.count();
+  }
+  else {
+    return "Max capacity already reached. Remove element before adding a new one."
+  }
+}
 // Time complexity:
 
 Stack.prototype.pop = function() {
-  // implement me...
+  var toReturn = this.storage.slice(this.storage.lastIndexOf("--")+2);
+  this.storage = this.storage.substring(0, this.storage.lastIndexOf("--"));
+  return toReturn;
 };
 // Time complexity:
 
 Stack.prototype.peek = function() {
-  // implement me...
+  return this.storage.slice(this.storage.lastIndexOf("--")+2);
 };
 // Time complexity:
 
 Stack.prototype.count = function() {
-  // implement me...
+  var num = 0;
+  for(var i=0; i<this.storage.length; i++){
+    if(this.storage[i] === "-"){
+      num += 1;
+      i++;
+    }
+  }
+  return num;
 };
 // Time complexity:
 
+Stack.prototype.contains = function(value) {
+  var found = false;
+  var stack_copy = this.storage;
+  while(!found) {
+    var elem = stack_copy.slice(stack_copy.lastIndexOf("--")+2);
+    if(elem === value){
+      found = true;
+    }
+    else if(stack_copy.length===0){
+      break;
+    }
+    else {
+      stack_copy = stack_copy.substring(0, stack_copy.lastIndexOf("--"));
+    }
+  }
+  return found;
+};
+
+Stack.prototype.until = function(value){
+  var stack_copy = this.storage;
+  var count = 0;
+  while(stack_copy.length > 0){
+    count += 1
+    if(stack_copy.slice(stack_copy.lastIndexOf("--")+2) == value){
+      break;
+    }
+    else {
+      stack_copy = stack_copy.substring(0, stack_copy.lastIndexOf("--"));
+    }
+  }
+  return count;
+};
+
+
+//test code
+var myStack = new Stack(10);
+myStack.push(2);
+myStack.push(3);
+myStack.push(2);
+myStack.push(2);
+myStack.push(2);
+myStack.push(4);
+myStack.push(2);
 
 /*
 *** Exercises:
