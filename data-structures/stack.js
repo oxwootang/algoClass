@@ -111,11 +111,10 @@ Stack.prototype.contains = function(value) {
 Stack.prototype.until = function(value){
   var stack_copy = this.storage;
   var count = 0;
-  var found = false;
-  while(stack_copy.length > 0 && !found){
+  while(stack_copy.length > 0){
     count += 1
     if(stack_copy.slice(stack_copy.lastIndexOf("--")+2) == value){
-      found = true;
+      break;
     }
     else {
       stack_copy = stack_copy.substring(0, stack_copy.lastIndexOf("--"));
@@ -123,6 +122,15 @@ Stack.prototype.until = function(value){
   }
   return count;
 };
+
+var myStack = new Stack(10);
+myStack.push(2);
+myStack.push(3);
+myStack.push(2);
+myStack.push(2);
+myStack.push(2);
+myStack.push(4);
+myStack.push(2);
 
 /*
 *** Exercises:
