@@ -111,11 +111,17 @@ Stack.prototype.contains = function(value) {
 Stack.prototype.until = function(value){
   var stack_copy = this.storage;
   var count = 0;
-  while(stack_copy.length > 0){
-    if(stack_copy.slice(stack_copy.lastIndexOf("--")+2) === value){
-
+  var found = false;
+  while(stack_copy.length > 0 && !found){
+    count += 1
+    if(stack_copy.slice(stack_copy.lastIndexOf("--")+2) == value){
+      found = true;
+    }
+    else {
+      stack_copy = stack_copy.substring(0, stack_copy.lastIndexOf("--"));
     }
   }
+  return count;
 };
 
 /*
