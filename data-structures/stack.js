@@ -50,78 +50,78 @@ What's the time complexity?
 
  */
 
-function Stack(capacity) {
-  this.storage = "";
-  this.capacity = capacity;
-}
+// function Stack(capacity) {
+//   this.storage = "";
+//   this.capacity = capacity;
+// }
 
-Stack.prototype.push = function(value) {
-  if(this.count() < this.capacity){
-    this.storage += "--"+value;
-    return this.count();
-  }
-  else {
-    return "Max capacity already reached. Remove element before adding a new one."
-  }
-}
-// Time complexity:
+// Stack.prototype.push = function(value) {
+//   if(this.count() < this.capacity){
+//     this.storage += "--"+value;
+//     return this.count();
+//   }
+//   else {
+//     return "Max capacity already reached. Remove element before adding a new one."
+//   }
+// }
+// // Time complexity:
 
-Stack.prototype.pop = function() {
-  var toReturn = this.storage.slice(this.storage.lastIndexOf("--")+2);
-  this.storage = this.storage.substring(0, this.storage.lastIndexOf("--"));
-  return toReturn;
-};
-// Time complexity:
+// Stack.prototype.pop = function() {
+//   var toReturn = this.storage.slice(this.storage.lastIndexOf("--")+2);
+//   this.storage = this.storage.substring(0, this.storage.lastIndexOf("--"));
+//   return toReturn;
+// };
+// // Time complexity:
 
-Stack.prototype.peek = function() {
-  return this.storage.slice(this.storage.lastIndexOf("--")+2);
-};
-// Time complexity:
+// Stack.prototype.peek = function() {
+//   return this.storage.slice(this.storage.lastIndexOf("--")+2);
+// };
+// // Time complexity:
 
-Stack.prototype.count = function() {
-  var num = 0;
-  for(var i=0; i<this.storage.length; i++){
-    if(this.storage[i] === "-"){
-      num += 1;
-      i++;
-    }
-  }
-  return num;
-};
-// Time complexity:
+// Stack.prototype.count = function() {
+//   var num = 0;
+//   for(var i=0; i<this.storage.length; i++){
+//     if(this.storage[i] === "-"){
+//       num += 1;
+//       i++;
+//     }
+//   }
+//   return num;
+// };
+// // Time complexity:
 
-Stack.prototype.contains = function(value) {
-  var found = false;
-  var stack_copy = this.storage;
-  while(!found) {
-    var elem = stack_copy.slice(stack_copy.lastIndexOf("--")+2);
-    if(elem === value){
-      found = true;
-    }
-    else if(stack_copy.length===0){
-      break;
-    }
-    else {
-      stack_copy = stack_copy.substring(0, stack_copy.lastIndexOf("--"));
-    }
-  }
-  return found;
-};
+// Stack.prototype.contains = function(value) {
+//   var found = false;
+//   var stack_copy = this.storage;
+//   while(!found) {
+//     var elem = stack_copy.slice(stack_copy.lastIndexOf("--")+2);
+//     if(elem === value){
+//       found = true;
+//     }
+//     else if(stack_copy.length===0){
+//       break;
+//     }
+//     else {
+//       stack_copy = stack_copy.substring(0, stack_copy.lastIndexOf("--"));
+//     }
+//   }
+//   return found;
+// };
 
-Stack.prototype.until = function(value){
-  var stack_copy = this.storage;
-  var count = 0;
-  while(stack_copy.length > 0){
-    count += 1
-    if(stack_copy.slice(stack_copy.lastIndexOf("--")+2) == value){
-      break;
-    }
-    else {
-      stack_copy = stack_copy.substring(0, stack_copy.lastIndexOf("--"));
-    }
-  }
-  return count;
-};
+// Stack.prototype.until = function(value){
+//   var stack_copy = this.storage;
+//   var count = 0;
+//   while(stack_copy.length > 0){
+//     count += 1
+//     if(stack_copy.slice(stack_copy.lastIndexOf("--")+2) == value){
+//       break;
+//     }
+//     else {
+//       stack_copy = stack_copy.substring(0, stack_copy.lastIndexOf("--"));
+//     }
+//   }
+//   return count;
+// };
 
 
 //test code
